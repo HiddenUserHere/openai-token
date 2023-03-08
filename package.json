@@ -11,7 +11,7 @@
   "exports": {
     ".": {
       "import": "./build/index.cjs",
-      "types": "./build/index.d.cts",
+      "types": "./build/index.d.ts",
       "default": "./build/index.cjs"
     }
   },
