@@ -1,7 +1,40 @@
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
 // src/index.ts
-import axios from "axios";
-import { wrapper } from "axios-cookiejar-support";
-import { CookieJar } from "tough-cookie";
+var src_exports = {};
+__export(src_exports, {
+  default: () => src_default
+});
+module.exports = __toCommonJS(src_exports);
+var import_axios = __toESM(require("axios"), 1);
+var import_axios_cookiejar_support = require("axios-cookiejar-support");
+var import_tough_cookie = require("tough-cookie");
 var HttpError = class extends Error {
   constructor(location, statusCode, details) {
     super(details);
@@ -14,11 +47,13 @@ var Authenticator = class {
   constructor(email, password) {
     this.email = email;
     this.password = password;
-    this.userAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36";
-    this.accessToken = null;
-    this.jar = new CookieJar();
-    this.client = wrapper(axios.create({ jar: this.jar }));
+    this.jar = new import_tough_cookie.CookieJar();
+    this.client = (0, import_axios_cookiejar_support.wrapper)(import_axios.default.create({ jar: this.jar }));
   }
+  client;
+  jar;
+  userAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36";
+  accessToken = null;
   static urlEncode(str) {
     return encodeURIComponent(str).replace(/%20/g, "+");
   }
@@ -153,7 +188,6 @@ var Authenticator = class {
   }
 };
 var src_default = Authenticator;
-export {
-  src_default as default
-};
-//# sourceMappingURL=index.js.map
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {});
+//# sourceMappingURL=index.cjs.map
